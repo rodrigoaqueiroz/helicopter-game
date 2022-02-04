@@ -46,10 +46,11 @@
 .anima3 {
 	background-image:url(../imgs/amigo.png);
 	animation:play2 .9s steps(12) infinite;
+  
 	-webkit-animation: play2 .9s steps(12) infinite;
-       -moz-animation: play2 .9s steps(12) infinite;
-        -ms-animation: play2 .9s steps(12) infinite;
-         -o-animation: play2 .9s steps(12) infinite;
+  -moz-animation: play2 .9s steps(12) infinite;
+  -ms-animation: play2 .9s steps(12) infinite;
+  -o-animation: play2 .9s steps(12) infinite;
 }
 
 @keyframes play2 {
