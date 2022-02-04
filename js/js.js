@@ -4,6 +4,7 @@ function start() {
 	$("#fundoGame").append("<div id='inimigo1' class='anima2'></div>");
 	$("#fundoGame").append("<div id='inimigo2'></div>");
 	$("#fundoGame").append("<div id='amigo' class='anima3'></div>");
+  $("#fundoGame").append("<div id='placar'></div>");
 	
 	var jogo = {}
   var TECLA = {
@@ -25,8 +26,10 @@ function start() {
     jogo.pressionou[e.which] = false;
   });
 
-	//Game Loop
-
+  var pontos=0;
+  var salvos=0;
+  var perdidos=0;
+  
 	jogo.timer = setInterval(loop,30);
 	function loop() {
 	  movefundo();
@@ -35,6 +38,7 @@ function start() {
     moveinimigo2();
     moveamigo();
     colisao();
+    placar();
 	};
 
   function movefundo() {
@@ -169,10 +173,10 @@ function start() {
   function colisao() {
     var colisao1 = ($("#jogador").collision($("#inimigo1")));
     var colisao2 = ($("#jogador").collision($("#inimigo2")));
-    var colisao3 = ($("#disparo").collision($("#inimigo1")));
-    var colisao4 = ($("#disparo").collision($("#inimigo2")));
-    var colisao5 = ($("#jogador").collision($("#amigo")));
-    var colisao6 = ($("#inimigo2").collision($("#amigo")));
+    var colisao3 = ($("#disparo").collision($("#inimigo1"))); // 100pts
+    var colisao4 = ($("#disparo").collision($("#inimigo2"))); // 50pts
+    var colisao5 = ($("#jogador").collision($("#amigo"))); // salvo +1
+    var colisao6 = ($("#inimigo2").collision($("#amigo"))); // perdidos +1
     
     if (colisao1.length>0) {
       inimigo1X = parseInt($("#inimigo1").css("left"));
@@ -193,18 +197,18 @@ function start() {
     };	
   
     if (colisao3.length>0) {		
+      pontos=pontos+100;
       inimigo1X = parseInt($("#inimigo1").css("left"));
       inimigo1Y = parseInt($("#inimigo1").css("top"));
-        
       explosao1(inimigo1X,inimigo1Y);
-      $("#disparo").css("left",950);
-        
+      $("#disparo").css("left",950);    
       posicaoY = parseInt(Math.random() * 334);
       $("#inimigo1").css("left",694);
       $("#inimigo1").css("top",posicaoY);  
     };
 
     if (colisao4.length>0) {
+      pontos=pontos+50;
       inimigo2X = parseInt($("#inimigo2").css("left"));
       inimigo2Y = parseInt($("#inimigo2").css("top"));
       $("#inimigo2").remove();
@@ -214,11 +218,13 @@ function start() {
     };
 
     if (colisao5.length>0) {
+      salvos += 1;
       reposicionaAmigo();
       $("#amigo").remove();
     };
 
     if (colisao6.length>0) {
+      perdidos += 1
       amigoX = parseInt($("#amigo").css("left"));
       amigoY = parseInt($("#amigo").css("top"));
       explosao3(amigoX,amigoY);
@@ -236,18 +242,23 @@ function start() {
         if (fimdejogo==false) {
           $("#fundoGame").append("<div id=inimigo2></div");       
         };
-      };	
-    };
-
+      };
+    };	
   function reposicionaAmigo() {
     var tempoAmigo=window.setInterval(reposiciona6, 6000);
       function reposiciona6() {
       window.clearInterval(tempoAmigo);
-      tempoAmigo=null;
-      
+      tempoAmigo=null;   
       if (fimdejogo==false) {
         $("#fundoGame").append("<div id='amigo' class='anima3'></div>");
       };
-    };
   };
 };
+
+  function placar() {
+    $("#placar").html(
+      "<h2> Pontos: " + pontos + " Salvos: " + salvos + " Perdidos: " + perdidos + "</h2>"
+    );
+  };
+};
+
