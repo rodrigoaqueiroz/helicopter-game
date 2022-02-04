@@ -10,4 +10,4 @@ Uma das dificuldades dos desenvolvedores de jogos é encontrar uma plataforma de
 Especialista: Denilson Bonatti
 <br>
 
-**Stacks: HTML, CSS, Javascript e Jquery**
+**Stack: HTML, CSS, Javascript e Jquery**
