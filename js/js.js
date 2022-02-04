@@ -25,7 +25,8 @@ function start() {
   $(document).keyup(function(e){
     jogo.pressionou[e.which] = false;
   });
-
+  
+  var fimdejogo=false;
   var pontos=0;
   var salvos=0;
   var perdidos=0;
