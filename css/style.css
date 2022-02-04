@@ -11,12 +11,14 @@ h1 {
 
 body {
 	background-image:url(../imgs/fundo.jpg);
+	background-size: cover;
 }
 
 #container{
 	width:950px;
 	height:auto;
 	position:relative;
+	margin-top:10%;
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -25,7 +27,7 @@ body {
 	width:950px;
 	height:630px;
 	background-image:url(../imgs/fundo_game.jpg);
-	border-color:#FFF;
+	border-color: #281612;
 	border-style:solid;
 }
 
@@ -75,6 +77,7 @@ body {
  	margin-top:100px;
 	text-align:center;
 	padding:10px;
+	cursor: pointer;
 }
 
 #placar {
@@ -114,4 +117,9 @@ h3 {
  	margin-top:100px;
 	text-align:center;
 	padding:10px;
+	cursor: default;
+}
+
+#fim h3 {
+	cursor: pointer;
 }

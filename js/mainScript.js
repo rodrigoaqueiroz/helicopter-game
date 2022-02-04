@@ -63,8 +63,8 @@ function start() {
     if (jogo.pressionou[TECLA.UP]) {
       var topo = parseInt($("#jogador").css("top"));
       $("#jogador").css("top",topo-10);	
+      
       if (topo<=0) {
-
         $("#jogador").css("top",topo+10);
       };  
     };   
@@ -313,5 +313,11 @@ function start() {
     $("#fim").html("<h1> Game Over </h1><p>Sua pontuação foi: " + pontos + "</p>" + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>");
   }
 };
+
+function reiniciaJogo() {
+	somGameover.pause();
+	$("#fim").remove();
+	start();
+} 
 
 
